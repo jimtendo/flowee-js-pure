@@ -2,6 +2,12 @@ const _ = require('lodash');
 const Message = require('../message');
 const Utils = require('../utils');
 
+const ErrorTable = {
+  20: "FailedReason",
+  21: "FailedCommandServiceId",
+  22: "FailedCommandId"
+};
+
 class Service {
   constructor(instance) {
     this.instance = instance;
@@ -13,7 +19,16 @@ class Service {
     
     return new Promise(resolve => {
       this.instance.send(new Message(header, body)).then(res => {
-        if (table) res.reply.body = Utils.objectify(res.reply.bodyRaw, table);
+        // Check to see if it's an error from Flowee
+        if (res.res.header.serviceId == 0 && res.res.header.messageId == 2) {
+          table = ErrorTable;
+        }
+        
+        // Otherwise, if a table has been specified, objectify body
+        if (table) {
+          res.res.body = Utils.objectify(res.res.bodyRaw, table);
+        }
+        
         resolve(res);
       });
     });

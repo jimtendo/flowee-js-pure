@@ -12,14 +12,14 @@ async function main() {
   console.log('//')
   console.log('// version()');
   console.log('//')
-  console.log(version.reply.body);
+  console.log(version.res.body);
   
   // Get BlockchainInfo
   let blockchainInfo = await flowee.blockchain.getBlockChainInfo();
   console.log('//')
   console.log('// getBlockChainInfo()');
   console.log('//')
-  console.log(blockchainInfo.reply.body);
+  console.log(blockchainInfo.res.body);
   
   // Try to generate a test block
   let generateBlockRes = await flowee.regTest.generateBlock({
@@ -29,7 +29,7 @@ async function main() {
   console.log('//')
   console.log('// generateBlockRes()');
   console.log('//')
-  console.log(generateBlockRes.reply.body);
+  console.log(generateBlockRes.res.body);
   
   // Get a transaction
   let getTxRes = await flowee.liveTx.getTransaction({
@@ -38,21 +38,21 @@ async function main() {
   console.log('//')
   console.log('// getTransaction()');
   console.log('//')
-  console.log(getTxRes.reply.body);
+  console.log(getTxRes.res.body);
   
   // Get best block hash
   let getBestBlockHashRes = await flowee.blockchain.getBestBlockHash();
   console.log('//')
   console.log('// getBestBlockHash()');
   console.log('//')
-  console.log(getBestBlockHashRes.reply.body);
+  console.log(getBestBlockHashRes.res.body);
   
   // Get best block hash
   let getBlockCountRes = await flowee.blockchain.getBlockCount();
   console.log('//')
   console.log('// getBlockHeight()');
   console.log('//')
-  console.log(getBlockCountRes.reply.body);
+  console.log(getBlockCountRes.res.body);
 }
 
 main();

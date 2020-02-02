@@ -17,23 +17,23 @@ const Header = {
 
 class Message {  
   constructor(header = null, body = null) {
-    this.headers = (header) ? header : {};
+    this.header = (header) ? header : {};
     this.bodyRaw = body;
   }
   
   setRequestId(requestId) {
-    this.headers.requestId = requestId;
+    this.header.requestId = requestId;
   }
   
   getRequestId(requestId) {
-    return this.headers.requestId;
+    return this.header.requestId;
   }
   
   toBuffer() {
     let msg = new CMF.Message();
     
     // Add each header token
-    let headers = Utils.enumerate(this.headers, Header);
+    let headers = Utils.enumerate(this.header, Header);
     for (let tag in headers) {
       msg.push({ tag: tag, value: headers[tag] });
     }
@@ -63,7 +63,7 @@ class Message {
     cmfMsg.forEach(token => {
       if (isHeader) {
         if (Header[token.tag] && token.tag !== 0) {
-          this.headers[Header[token.tag]] = token.value;
+          this.header[Header[token.tag]] = token.value;
         }
 
         if (token.tag === 0) {

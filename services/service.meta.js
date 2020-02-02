@@ -27,6 +27,15 @@ class Meta extends Service{
     
     return this.send(header);
   }
+  
+  pong() {
+    const header = {
+        serviceId: 126,
+        pong: true
+    };
+    
+    return this.send(header);
+  }
 }
 
 module.exports = Meta;

@@ -51,7 +51,7 @@ class Flowee {
       let msg = new Message().fromBuffer(data);
       
       // If it's a pong message, let's reply in 30 seconds
-      if (msg.headers.pong) {
+      if (msg.header.pong) {
         this.pingTimer = setTimeout(() => { this.meta.ping(); }, 10 * 1000);
         return;
       }
@@ -62,7 +62,7 @@ class Flowee {
         console.log(`FloweeJSPure: Error: Reply with RequestId ${msg.getRequestId()} does not exist`);
         return;
       }
-      reply.reply = msg;
+      reply.res = msg;
       reply.callback(reply);
     });
     
@@ -82,7 +82,6 @@ class Flowee {
   }
   
   _send(message, callback) {
-    console.log(message);
     message.setRequestId(this.requestId);
     
     this.waitingToSend[this.requestId] = {
