@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 class Utils {
   static objectify(body, table) {
     let objectifiedBody = {};
@@ -26,3 +28,5 @@ class Utils {
     return enumeratedBody;
   }
 }
+
+module.exports = Utils;

@@ -1,47 +1,45 @@
+const _ = require('lodash');
 const CMF = require('../compact-message-format');
 const SmartBuffer = require('smart-buffer').SmartBuffer;
 
+const Utils = require('./utils');
+
 const Header = {
-  End:                0,
-  ServiceID:          1,
-  MessageID:          2,
-  SequenceStart:      3,
-  LastInSequence:     4,
-  Ping:               5,
-  Pong:               6,
-  // Custom Headers
-  RequestID:         11,
+  0:  "end",
+  1:  "serviceId",
+  2:  "messageId",
+  3:  "sequenceStart",
+  4:  "lastInSequence",
+  5:  "ping",
+  6:  "pong",
+  11: "requestId"
 }
 
-/* TODO Class needs refactoring.
- * Need to decide on how constructor should look. Should it take "Enums" or "String"?
- * let msg = new Message({ serviceID: 0, messageID: 1}, body);
- */
 class Message {  
-  constructor(serviceID = null, messageID = null, body = null) {
-    this.headers = {
-      serviceID: serviceID,
-      messageID: messageID
-    };
+  constructor(header = null, body = null) {
+    this.headers = (header) ? header : {};
     this.bodyRaw = body;
   }
   
-  setRequestID(requestID) {
-    this.headers.requestID = requestID;
+  setRequestId(requestId) {
+    this.headers.requestId = requestId;
   }
   
-  getRequestID(requestID) {
-    return this.headers.requestID;
+  getRequestId(requestId) {
+    return this.headers.requestId;
   }
   
   toBuffer() {
-    let msg = new CMF.Message(
-      { tag: Header.ServiceID, value: this.headers.serviceID },
-      { tag: Header.MessageID, value: this.headers.messageID },
-      { tag: Header.RequestID, value: this.headers.requestID },
-      { tag: Header.End, value: true }
-    );
+    let msg = new CMF.Message();
     
+    // Add each header token
+    let headers = Utils.enumerate(this.headers, Header);
+    for (let tag in headers) {
+      msg.push({ tag: tag, value: headers[tag] });
+    }
+    msg.push({ tag: 0, value: true }); // Add "end" token to indicate end of header
+    
+    // Add each body token
     for (let tag in this.bodyRaw) {
       msg.push({ tag: tag, value: this.bodyRaw[tag] });
     }
@@ -54,19 +52,22 @@ class Message {
     return finalBuffer;
   }
   
+  // TODO Clean me up
   fromBuffer(buffer) {
     let smartBuffer = SmartBuffer.fromBuffer(buffer);
     let msgSize = smartBuffer.readUInt16LE();
     let cmfMsg = new CMF.Message().fromBuffer(smartBuffer.readBuffer());
     let isHeader = true;
     this.bodyRaw = [];
+    
     cmfMsg.forEach(token => {
       if (isHeader) {
-        switch (token.tag) {
-          case Header.ServiceID: this.headers.serviceID = token.value; break;
-          case Header.MessageID: this.headers.messageID = token.value; break;
-          case Header.RequestID: this.headers.requestID = token.value; break;
-          case Header.End: isHeader = false; break;
+        if (Header[token.tag] && token.tag !== 0) {
+          this.headers[Header[token.tag]] = token.value;
+        }
+
+        if (token.tag === 0) {
+          isHeader = false;
         }
       } else {
         this.bodyRaw.push(token);

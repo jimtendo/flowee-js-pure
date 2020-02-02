@@ -15,8 +15,8 @@ class Flowee {
     this.server = server;
     this.socket = new Net.Socket();
     
-    // Setup requestID and send/reply queue
-    this.requestID = 0;
+    // Setup requestId and send/reply queue
+    this.requestId = 0;
     this.waitingToSend = {};
     this.waitingForReply = {};
     
@@ -30,14 +30,9 @@ class Flowee {
     // Setup onConnected callback
     this.socket.on('connect', () => {
       console.log(`FloweeJSPure: Connected to ${this.server}`);
-      this.meta.version();
       
-      // Send a ping message every 60 seconds so that server doesn't kill our connection
-      // TODO Minor Use setTimeout instead 
-      // TODO Send Ping message maybe? (As version does not work. Will need to refactor Message class)
-      this.pingTimer = setInterval(() => {
-        this.meta.version()
-      }, 60 * 1000);
+      // Send a ping message immediately so that we don't get diconnected
+      this.meta.ping();
     });
     
     // Setup onClose callback
@@ -54,9 +49,17 @@ class Flowee {
     // Setup onData callback
     this.socket.on('data', (data) => {
       let msg = new Message().fromBuffer(data);
-      let reply = this.waitingForReply[msg.getRequestID()];
+      
+      // If it's a pong message, let's reply in 30 seconds
+      if (msg.headers.pong) {
+        this.pingTimer = setTimeout(() => { this.meta.ping(); }, 10 * 1000);
+        return;
+      }
+      
+      // Otherwise, let's look in our waitingForReply queue for the message
+      let reply = this.waitingForReply[msg.getRequestId()];
       if (!reply) {
-        console.log(`FloweeJSPure: Error: Reply with RequestID ${msg.getRequestID()} does not exist`);
+        console.log(`FloweeJSPure: Error: Reply with RequestId ${msg.getRequestId()} does not exist`);
         return;
       }
       reply.reply = msg;
@@ -79,25 +82,26 @@ class Flowee {
   }
   
   _send(message, callback) {
-    message.setRequestID(this.requestID);
+    console.log(message);
+    message.setRequestId(this.requestId);
     
-    this.waitingToSend[this.requestID] = {
+    this.waitingToSend[this.requestId] = {
       req: message,
       callback: callback,
       time: new Date(),
     };
-    this.requestID++;
+    this.requestId++;
     
     this.processWaiting();
   }
   
   processWaiting() {    
     if (!this.socket.pending) {
-      for (let requestID in this.waitingToSend) {
-        let payload = this.waitingToSend[requestID].req.toBuffer();
+      for (let requestId in this.waitingToSend) {
+        let payload = this.waitingToSend[requestId].req.toBuffer();
         this.socket.write(payload);
-        this.waitingForReply[requestID] = this.waitingToSend[requestID];
-        delete this.waitingToSend[requestID];
+        this.waitingForReply[requestId] = this.waitingToSend[requestId];
+        delete this.waitingToSend[requestId];
       }
     }
   }

@@ -21,9 +21,11 @@ class Meta extends Service{
   
   ping() {
     const header = {
-        serviceId: 0,
-        messageId: 0
+        serviceId: 126,
+        ping: true
     };
+    
+    return this.send(header);
   }
 }
 
