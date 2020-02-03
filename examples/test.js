@@ -53,6 +53,19 @@ async function main() {
   console.log('// getBlockHeight()');
   console.log('//')
   console.log(getBlockCountRes.res.body);
+  
+  // Subscribe to Block Notifications
+  let callback1Id = flowee.blockNotification.subscribe((msg) => {
+    console.log('block received callback 1');
+    console.log(msg);
+  });
+  // Subscribe to Block Notifications
+  let callback2Id = flowee.blockNotification.subscribe((msg) => {
+    console.log('block received callback 2');
+    console.log(msg);
+  });
 }
 
 main();
+
+

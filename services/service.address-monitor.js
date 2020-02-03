@@ -1,38 +1,38 @@
 const Service = require('./service');
 
-class LiveTx extends Service {
+class AddressMonitor extends Service {
   constructor(instance) {
     super(instance);
   }
   
-  getTransaction(body) { 
+  subscribe(body) { 
     const header = {
-      serviceId: 2,
+      serviceId: 17,
       messageId: 0
     };
     
     const table = {
-      // Req
-      4: "TxId",
-      // Res
-      5: "BlockHash"
+      request: {
+        9: "BitcoinScriptHashed"
+      },
+      reply: {
+        7: "Result",
+        9: "ErrorMessage",
+      }
     };
     
     return this.send(header, body, table);
   }
   
-  sendTransaction(body) { 
+  unsubscribe(body) { 
     const header = {
-        serviceId: 2,
+        serviceId: 17,
         messageId: 2
     };
     
     const table = {
       request: {
-        20: "Transaction"
-      },
-      reply: {
-        1: "BytesData"
+        9: "BitcoinScriptHashed"
       }
     };
     
@@ -40,4 +40,4 @@ class LiveTx extends Service {
   }
 }
 
-module.exports = LiveTx;
+module.exports = AddressMonitor;

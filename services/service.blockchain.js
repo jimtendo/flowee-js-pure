@@ -7,20 +7,21 @@ class Blockchain extends Service {
   
   getBlockChainInfo(body) { 
     const header = {
-        serviceId: 1,
-        messageId: 0
+      serviceId: 1,
+      messageId: 0
     };
     
     const table = {
-      // res
-      64: "Difficulty",
-      65: "MedianTime",
-      66: "ChainWork",
-      67: "Chain",
-      68: "Blocks",
-      69: "Headers",
-      70: "BestBlockHash",
-      71: "VerificationProgress",
+      reply: {
+        64: "Difficulty",
+        65: "MedianTime",
+        66: "ChainWork",
+        67: "Chain",
+        68: "Blocks",
+        69: "Headers",
+        70: "BestBlockHash",
+        71: "VerificationProgress",
+      }
     };
     
     return this.send(header, body, table);
@@ -33,8 +34,9 @@ class Blockchain extends Service {
     };
     
     const table = {
-      // res
-      1: "BlockHash",
+      reply: {
+        1: "BlockHash",
+      }
     };
     
     return this.send(header, body, table);
@@ -47,8 +49,9 @@ class Blockchain extends Service {
     };
     
     const table = {
-      // res
-      7: "BlockHeight",
+      reply: {
+        7: "BlockHeight",
+      }
     };
     
     return this.send(header, body, table);

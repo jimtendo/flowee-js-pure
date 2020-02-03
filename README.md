@@ -5,10 +5,14 @@
 3. Do any of the requests and their corresponding responses share the same "Tag ID"?
    Is this ever anticipated to happen in future - or could we say that this is against design?
    If it could happen, would both the Request Tag and the Response Tag have the same meaning?
+   JIM: It can happen - there was one where it did.
 4. I think type "Double" is used in CMF. See here: https://flowee.org/docs/api/service/blockchain/#getblockchaininforeply
    (Technically, it's a floating point - but I couldn't decode this with my CMF parser)
+   JIM: There is double used in the API. Node CMF Library now supports it.
 5. Is Ping message the best to use to prevent connection being killed?
+   JIM: This now appears to work with Ping.
 6. Is there any "cleaner" way to scrape API's from documentatoin/code?
+   JIM: Will write these manually I think. There's not too many - I worry about it falling out of sync though?
    
 # Questions for Jim:
 

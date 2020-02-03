@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const Net = require('net');
 const CMF = require('compact-message-format');
 const Message = require('./message');
@@ -8,6 +9,8 @@ const MetaService = require('./services/service.meta');
 const BlockchainService = require('./services/service.blockchain');
 const RegTestService = require('./services/service.reg-test');
 const LiveTxService = require('./services/service.live-tx');
+const AddressMonitorService = require('./services/service.address-monitor');
+const BlockNotificationService = require('./services/service.block-notification');
 
 class Flowee {
   constructor(server) {
@@ -20,57 +23,38 @@ class Flowee {
     this.waitingToSend = {};
     this.waitingForReply = {};
     
+    // Setup listeners (these are used for "Notification" type services)
+    this.listeners = [];
+    
     // Register services
     this.generic = new Service(this);
     this.meta = new MetaService(this);
     this.blockchain = new BlockchainService(this);
     this.regTest = new RegTestService(this);
     this.liveTx = new LiveTxService(this);
+    this.blockNotification = new BlockNotificationService(this);
     
-    // Setup onConnected callback
-    this.socket.on('connect', () => {
-      console.log(`FloweeJSPure: Connected to ${this.server}`);
-      
-      // Send a ping message immediately so that we don't get diconnected
-      this.meta.ping();
-    });
+    // Setup socket callbacks
+    this.socket.on('connect', () => this._onConnect());
+    this.socket.on('close', (hasError) => this._onClose(hasError));
+    this.socket.on('data', (data) => this._onData(data));
+    this.socket.on('error', (error) => this._onError(error));
     
-    // Setup onClose callback
-    this.socket.on('close', (hasError) => {
-      console.log(`FloweeJSPure: Connection to ${this.server} closed`);
-      clearInterval(this.pingTimer);
-    });
-    
-    // Setup onError callback
-    this.socket.on('error', (error) => {
-      console.error(`FloweeJSPure: ${error.message}`);
-    });
-    
-    // Setup onData callback
-    this.socket.on('data', (data) => {
-      let msg = new Message().fromBuffer(data);
-      
-      // If it's a pong message, let's reply in 30 seconds
-      if (msg.header.pong) {
-        this.pingTimer = setTimeout(() => { this.meta.ping(); }, 10 * 1000);
-        return;
-      }
-      
-      // Otherwise, let's look in our waitingForReply queue for the message
-      let reply = this.waitingForReply[msg.getRequestId()];
-      if (!reply) {
-        console.log(`FloweeJSPure: Error: Reply with RequestId ${msg.getRequestId()} does not exist`);
-        return;
-      }
-      reply.res = msg;
-      reply.callback(reply);
-    });
-    
-    // Split address and port
+    // Split Address and Port and then connect
     let [address, port] = server.split(':');
-    
-    // Connect socket for server
     this.socket.connect(port, address);
+  }
+  
+  /**
+   * Add listener that will process replies that match filter
+   * @param filter A object that contains headers
+   * @param callback Callback when matches
+   */
+  addListener(filter, callback) {
+    this.listeners.push({
+      filter: filter,
+      callback: callback
+    });
   }
   
   send(message, opts = {}) {
@@ -91,10 +75,41 @@ class Flowee {
     };
     this.requestId++;
     
-    this.processWaiting();
+    this._processWaiting();
   }
   
-  processWaiting() {    
+  _onConnect() {
+    console.log(`FloweeJSPure: Connected to ${this.server}`);
+    this.meta.ping();
+  }
+  
+  _onClose(hasError) {
+    console.log(`FloweeJSPure: Connection to ${this.server} closed`);
+  }
+  
+  _onData(data) {
+    let msg = new Message().fromBuffer(data);
+    
+    // Check to see if a listener is setup for this serviceId/messageId
+    this.listeners.forEach(listener => {
+      if (_.isMatch(msg.header, listener.filter)) {
+        msg = listener.callback(msg);
+      }
+    });
+    
+    // Otherwise, let's look in our waitingForReply queue for the message
+    let reply = this.waitingForReply[msg.getRequestId()];
+    if (reply) {
+      reply.res = msg;
+      reply.callback(reply);
+    }
+  }
+  
+  _onError(error) {
+    console.error(`FloweeJSPure: ${error.message}`);
+  }
+  
+  _processWaiting() {    
     if (!this.socket.pending) {
       for (let requestId in this.waitingToSend) {
         let payload = this.waitingToSend[requestId].req.toBuffer();

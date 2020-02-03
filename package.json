@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "compact-message-format": "0.0.1",
+    "compact-message-format": "0.0.3",
     "lodash": "^4.17.15"
   }
 }

@@ -13,20 +13,20 @@ class Service {
     this.instance = instance;
   }
   
-  send(header, body = null, table = null) {
+  send(header, body = null, table) {
     // Enumerate body based on lookup table
-    if (body && table) body = Utils.enumerate(body, table);
+    if (body && table.request) body = Utils.enumerate(body, table.request);
     
     return new Promise(resolve => {
       this.instance.send(new Message(header, body)).then(res => {
         // Check to see if it's an error from Flowee
         if (res.res.header.serviceId == 0 && res.res.header.messageId == 2) {
-          table = ErrorTable;
+          table.reply = ErrorTable;
         }
         
         // Otherwise, if a table has been specified, objectify body
-        if (table) {
-          res.res.body = Utils.objectify(res.res.bodyRaw, table);
+        if (table.reply) {
+          res.res.body = Utils.objectify(res.res.bodyRaw, table.reply);
         }
         
         resolve(res);
