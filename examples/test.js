@@ -1,9 +1,15 @@
 const Flowee = require('../');
 const _ = require('lodash');
+const CMF = require('compact-message-format');
 
 async function main() {
   // Testnet 
   //let flowee = new Flowee('api.flowee.org:11235');
+  
+  let cmf = new CMF.MessageParser(Buffer.from("00087e34040600087e3404", "hex"));
+  console.log(cmf.next());
+  console.log(cmf.next());
+  console.log(cmf.next());
   
   // Livenet
   let flowee = new Flowee('api.flowee.org:1235');
@@ -63,11 +69,17 @@ async function main() {
   });
   
   // Subscribe to Address
-  let addressCallback = await flowee.monitor.subscribeAddress({
-    "BitcoinScriptHashed": Buffer.from("9d07710d7f6215cbe7a2d805db38ce903f05f0062831acc21b6c85cb0e051118", 'hex')
-  }, msg => {
+  let addressCallback = await flowee.monitor.subscribeAddress(Buffer.from("9d07710d7f6215cbe7a2d805db38ce903f05f0062831acc21b6c85cb0e051118", 'hex'), msg => {
     console.log(msg);
   });
+  
+  // Get transaction
+  let indexersRes = await flowee.meta.getAvailableIndexers();
+  console.log(indexersRes);
+  
+  // Get transaction
+  let transactionRes = await flowee.transaction.getTransaction("00dd0f923e850948119c448fbad31f457b3d0e82e0f82aa86a963eb99f365ce5");
+  console.log(transactionRes);
 }
 
 main();

@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "docs": "documentation build index.js -f html -o ./docs"
+    "docs": "documentation build index.js -f html -o ./docs && documentation build index.js -f md -o ./API.md"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "compact-message-format": "0.0.3",
+    "compact-message-format": "0.0.4",
     "lodash": "^4.17.15"
   }
 }
