@@ -5,14 +5,14 @@
 -   [Flowee][1]
     -   [Parameters][2]
     -   [Examples][3]
-    -   [meta][4]
-    -   [monitor][5]
-    -   [blockchain][6]
-    -   [blockNotification][7]
-    -   [transaction][8]
-    -   [regTest][9]
-    -   [getHub][10]
-    -   [getIndexer][11]
+    -   [hub][4]
+    -   [indexer][5]
+    -   [meta][6]
+    -   [monitor][7]
+    -   [blockchain][8]
+    -   [blockNotification][9]
+    -   [transaction][10]
+    -   [regTest][11]
 -   [MetaService][12]
     -   [Parameters][13]
     -   [version][14]
@@ -109,53 +109,53 @@ async function main() {
 main();
 ```
 
+### hub
+
+Instance of the Hub Client
+
+Returns **[Client][79]** Flowee Hub
+
+### indexer
+
+Instance of the Indexer Client
+
+Returns **[Client][79]** Flowee Indexer
+
 ### meta
 
 Meta Service
 
-Returns **[MetaService][79]** 
+Returns **[MetaService][80]** 
 
 ### monitor
 
 Address Monitor Service
 
-Returns **[MonitorService][80]** 
+Returns **[MonitorService][81]** 
 
 ### blockchain
 
 Blockchain Service
 
-Returns **[BlockchainService][81]** 
+Returns **[BlockchainService][82]** 
 
 ### blockNotification
 
 Block Notification Service
 
-Returns **[BlockNotificationService][82]** 
+Returns **[BlockNotificationService][83]** 
 
 ### transaction
 
 Transaction Service
 
-Returns **[TransactionService][83]** 
+Returns **[TransactionService][84]** 
 
 ### regTest
 
 Test Service
 
 Returns **TestService** 
-
-### getHub
-
-Returns the Hub Client
-
-Returns **[Client][84]** Flowee Hub
-
-### getIndexer
-
-Returns the Indexer Client
-
-Returns **[Client][84]** Flowee Indexer
 
 ## MetaService
 
@@ -533,21 +533,21 @@ Returns **[Buffer][87]** Message
 
 [3]: #examples
 
-[4]: #meta
+[4]: #hub
 
-[5]: #monitor
+[5]: #indexer
 
-[6]: #blockchain
+[6]: #meta
 
-[7]: #blocknotification
+[7]: #monitor
 
-[8]: #transaction
+[8]: #blockchain
 
-[9]: #regtest
+[9]: #blocknotification
 
-[10]: #gethub
+[10]: #transaction
 
-[11]: #getindexer
+[11]: #regtest
 
 [12]: #metaservice
 
@@ -683,17 +683,17 @@ Returns **[Buffer][87]** Message
 
 [78]: #parameters-23
 
-[79]: #metaservice
+[79]: #client
 
-[80]: #monitorservice
+[80]: #metaservice
 
-[81]: #blockchainservice
+[81]: #monitorservice
 
-[82]: #blocknotificationservice
+[82]: #blockchainservice
 
-[83]: #transactionservice
+[83]: #blocknotificationservice
 
-[84]: #client
+[84]: #transactionservice
 
 [85]: #flowee
 
