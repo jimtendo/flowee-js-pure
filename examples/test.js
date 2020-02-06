@@ -12,7 +12,7 @@ async function main() {
   console.log(cmf.next());
   
   // Livenet
-  let flowee = new Flowee('api.flowee.org:1235');
+  let flowee = new Flowee();
   
   // Get the version of Flowee we are connected to
   let version = await flowee.meta.version();
