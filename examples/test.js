@@ -15,7 +15,7 @@ async function main() {
   let flowee = new Flowee();
   
   // Get the version of Flowee we are connected to
-  let version = await flowee.meta.version();
+  let version = await flowee.meta.getVersion();
   console.log('//')
   console.log('// version()');
   console.log('//')
@@ -39,7 +39,7 @@ async function main() {
     console.log('//')
     console.log(generateBlockRes);
   } catch(err) {
-    console.log(err);
+    console.log('here');
   }
 
   

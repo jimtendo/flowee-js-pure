@@ -1,18 +1,47 @@
-const Flowee = require('../');
-const assert = require('assert');
+const chai = require("chai");
+const assert = chai.assert;
 
-describe('Flowee.Blockchain', function() {
-  let flowee = new Flowee('api.flowee.org:11235');
-  
-  describe('flowee.blockchain.getBlockChainInfo()', async function() {
-    let res = await flowee.blockchain.getBlockChainInfo();
-    
-    it('should contain a header', function() {
-      assert.equal(typeof res.header, 'object');
-    });
-    
-    it('should contain a body', function() {
-      assert.equal(typeof res.body, 'object');
+const Flowee = require('../');
+
+let flowee = new Flowee();
+
+describe('# Flowee.Blockchain', function() {
+  describe('# getBlockChainInfo()', () => {
+    it('Should retreieve blockchain information', async () => {
+      let result = await flowee.blockchain.getBlockChainInfo();
+      
+      assert.hasAllKeys(result, [
+        "difficulty",
+        "medianTime",
+        "chainWork",
+        "chain",
+        "blocks",
+        "headers",
+        "bestBlockHash",
+        "verificationProgress"
+      ])
     });
   });
+  
+  describe('# getBestBlockHash()', () => {
+    it('Should return a 32 Byte Buffer', async () => {
+      let result = await flowee.blockchain.getBestBlockHash();
+      
+      assert.instanceOf(result, Buffer);
+      assert.lengthOf(result, 32);
+    });
+  });
+  
+  describe('# getBlockCount()', () => {
+    it ('Should return a positive number', async () => {
+      let result = await flowee.blockchain.getBlockCount();
+      
+      assert.isNumber(result);
+      assert.isAtLeast(result, 0);
+    });
+  });
+});
+
+after(() => {
+  flowee.disconnect();
 });

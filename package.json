@@ -4,7 +4,7 @@
   "description": "A pure NodeJS Library for FloweeJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha test",
     "docs": "documentation build index.js -f html -o ./docs && documentation build index.js -f md -o ./API.md"
   },
   "keywords": [],
@@ -13,5 +13,8 @@
   "dependencies": {
     "compact-message-format": "0.0.4",
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0"
   }
 }
