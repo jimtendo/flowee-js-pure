@@ -8,7 +8,7 @@ let flowee = new Flowee();
 describe('# Flowee.Blockchain', function() {
   describe('# getBlockChainInfo()', () => {
     it('Should retreieve blockchain information', async () => {
-      let result = await flowee.blockchain.getBlockChainInfo();
+      let result = await flowee.Blockchain.getBlockChainInfo();
       
       assert.hasAllKeys(result, [
         "difficulty",
@@ -25,7 +25,7 @@ describe('# Flowee.Blockchain', function() {
   
   describe('# getBestBlockHash()', () => {
     it('Should return a 32 Byte Buffer', async () => {
-      let result = await flowee.blockchain.getBestBlockHash();
+      let result = await flowee.Blockchain.getBestBlockHash();
       
       assert.instanceOf(result, Buffer);
       assert.lengthOf(result, 32);
@@ -34,7 +34,7 @@ describe('# Flowee.Blockchain', function() {
   
   describe('# getBlockCount()', () => {
     it ('Should return a positive number', async () => {
-      let result = await flowee.blockchain.getBlockCount();
+      let result = await flowee.Blockchain.getBlockCount();
       
       assert.isNumber(result);
       assert.isAtLeast(result, 0);

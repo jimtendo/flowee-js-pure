@@ -6,7 +6,7 @@ const Message = require('../lib/message');
 async function main() {  
   // Livenet
   let flowee = new Flowee();
-  flowee.meta.getVersion();
+  flowee.Meta.getVersion();
   
   //let blockHeader = await flowee.blockchain.getBlockHeader(500000);
   //console.log(blockHeader);
@@ -80,12 +80,29 @@ async function main() {
   console.log(transactionRes);
   */
   
-  //let transactionRes = await flowee.transaction.getTransaction(Buffer.from("d9d5082034bc89879140fa8f3e0af7226d8580e56b8b4df63efc57515e56f352", 'hex'));
-  //console.log(transactionRes);
+  let transactionRes = await flowee.Transaction.getTransaction(Buffer.from("d9d5082034bc89879140fa8f3e0af7226d8580e56b8b4df63efc57515e56f352", 'hex'));
+  console.log(transactionRes);
+  
+  try {
+    let transaction = await flowee.Transaction.getTransaction("d9d5082034bc89879140fa8f3e0af7226d8580e56b8b4df63efc57515e56f352");
+    console.log(transaction);
+  } catch (err) {
+    console.log(err);
+  }
+  
+  try {
+    let addressSub = await flowee.Monitor.subscribeAddress("bitcoincash:qqs9d6hafs5cs75sy397jahrfr7zdws9wsdn6qhdde", (msg) => {
+      console.log('triggered');
+      console.log(msg);
+    });
+    console.log(addressSub);
+  } catch (err) {
+    console.log(err);
+  }
   
   // Get transaction
-  let addressRes = await flowee.transaction.getAddress("001388FCC627F797B8FEC524A7377007E7AC9EB5369637AC78");
-  console.log(addressRes);
+  //let addressRes = await flowee.transaction.getAddress("bitcoincash:qqwk84rt3nv5t2e5m73rjrz6uyy6rz7lnc9fxnl483");
+  //console.log(addressRes);
 }
 
 main();

@@ -4,17 +4,15 @@ const assert = chai.assert;
 const Flowee = require('../');
 const Tags = require('../lib/tags');
 
-const scriptHashedOne = Buffer.from('9d07710d7f6215cbe7a2d805db38ce903f05f0062831acc21b6c85cb0e051118', 'hex');
-const scriptHashedTwo = Buffer.from('aaaabbbb7f6215cbe7a2d805db38ce900f05f0062831acc21b6c85cb0e051118', 'hex');
-
 let flowee = new Flowee();
 
+const addresses = {
+  1: 'bitcoincash:qqwk84rt3nv5t2e5m73rjrz6uyy6rz7lnc9fxnl483',
+  2: 'qr782t6g6ywm8qsp0x9raqpjznvjla6ssynkr5gqxs'
+}
+
 describe('# Flowee.Monitor', async function() {
-  let subscriptions = {
-    1: null,  // Same address
-    2: null,  // Same address
-    3: null,  // Different address
-  };
+  let subscriptions = { };
   
   describe('# subscribeAddress', async () => {
     // We want to make sure it does not send a subscription message twice
@@ -27,32 +25,32 @@ describe('# Flowee.Monitor', async function() {
       return msg;
     });
     
-    it('Should return an object with scriptHashed and callbackId', async () => {
-      subscriptions[0] = await flowee.monitor.subscribeAddress(scriptHashedOne, (msg) => {});
-      assert.hasAllKeys(subscriptions[0], [
+    it('Should accept Bitcoin Cash addresses', async () => {
+      subscriptions['cashAddr'] = await flowee.Monitor.subscribeAddress(addresses[1], (msg) => {});
+      assert.hasAllKeys(subscriptions['cashAddr'], [
        'scriptHashed',
        'callbackId'
       ]);
     });
     
-    it('Should increment the callbackId each time a new callback is defined', async () => {
-      subscriptions[1] = await flowee.monitor.subscribeAddress(scriptHashedOne, (msg) => {});
-      
-      assert.hasAllKeys(subscriptions[1], [
+    it ('Should accept Legacy Addresses', async () => {
+      let legacyAddress = flowee.Address.toLegacyAddress(addresses[1]);
+      subscriptions['legacyAddr'] = await flowee.Monitor.subscribeAddress(legacyAddress, (msg) => {});
+      assert.hasAllKeys(subscriptions['legacyAddr'], [
        'scriptHashed',
        'callbackId'
       ]);
-      
-      assert.equal(subscriptions[1].callbackId, 1);
     });
     
-    it('Should have sent a subscription message only once to Flowee', async () => {
-      assert.equal(subscriptionMessageCount, 1);
+    it ('Should accept Raw Script', async () => {
+      subscriptions['scriptAddr'] = await flowee.Monitor.subscribeAddress("qr782t6g6ywm8qsp0x9raqpjznvjla6ssynkr5gqxs", (msg) => {});
+      assert.hasAllKeys(subscriptions['scriptAddr'], [
+       'scriptHashed',
+       'callbackId'
+      ]);
     });
     
-    it('Should send another subscription message if it is a different address', async () => {
-      subscriptions[2] = await flowee.monitor.subscribeAddress(scriptHashedTwo, (msg) => {});
-      
+    it('Should have sent a total of two subscribe messages to Flowee (2 same addresses, 1 different)', async () => {
       assert.equal(subscriptionMessageCount, 2);
     });
   });
@@ -68,20 +66,14 @@ describe('# Flowee.Monitor', async function() {
       return msg;
     });
     
-    it('Should not send an unsubscription message if other callbacks on same address (address 1)', async () => {
-      await flowee.monitor.unsubscribeAddress(subscriptions[0]);
-      
-      assert.equal(unsubscriptionMessageCount, 0);
-    });
-    
-    it('Should send an unsubscription message if no other callbacks on same address (address 1)', async () => {
-      await flowee.monitor.unsubscribeAddress(subscriptions[1]);
-      
+    it('Should have sent only one unsubscribe message for CashAddress and Legacy Address', async () => {
+      await flowee.Monitor.unsubscribeAddress(subscriptions['cashAddr']);
+      await flowee.Monitor.unsubscribeAddress(subscriptions['legacyAddr']);
       assert.equal(unsubscriptionMessageCount, 1);
     });
     
-    it('Should send an unsubscription message if no other callbacks on same address (address 2)', async () => {
-      await flowee.monitor.unsubscribeAddress(subscriptions[2]);
+    it('Should have sent another unsubscribe message for Script Address', async () => {
+      await flowee.Monitor.unsubscribeAddress(subscriptions['scriptAddr']);
       
       assert.equal(unsubscriptionMessageCount, 2);
     });

@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@developers.cash/libcash-js": "~/Projects/Flowee/libcash-js",
     "compact-message-format": "0.0.4",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "chai": "^4.2.0"
+    "chai": "^4.2.0",
+    "readline-sync": "^1.4.10"
   }
 }
