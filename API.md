@@ -2,96 +2,89 @@
 
 ### Table of Contents
 
--   [testing][1]
--   [Flowee][2]
-    -   [Parameters][3]
-    -   [Examples][4]
-    -   [hub][5]
-    -   [indexer][6]
-    -   [meta][7]
-    -   [monitor][8]
-    -   [blockchain][9]
-    -   [blockNotification][10]
-    -   [transaction][11]
-    -   [regTest][12]
-    -   [disconnect][13]
--   [MetaService][14]
-    -   [Parameters][15]
-    -   [getVersion][16]
-    -   [getAvailableIndexers][17]
--   [BlockchainService][18]
-    -   [Parameters][19]
-    -   [getBlockChainInfo][20]
-        -   [Examples][21]
-    -   [getBestBlockHash][22]
-        -   [Parameters][23]
-        -   [Examples][24]
-    -   [getBlockCount][25]
-        -   [Parameters][26]
-        -   [Examples][27]
-    -   [getBlock][28]
-        -   [Parameters][29]
-        -   [Examples][30]
--   [BlockNotificationService][31]
-    -   [Parameters][32]
-    -   [subscribe][33]
-        -   [Parameters][34]
-    -   [unsubscribe][35]
-        -   [Parameters][36]
--   [TransactionService][37]
-    -   [Parameters][38]
-    -   [getTransaction][39]
-        -   [Parameters][40]
-    -   [getAddress][41]
-        -   [Parameters][42]
-    -   [sendTransaction][43]
-        -   [Parameters][44]
--   [MonitorService][45]
-    -   [Parameters][46]
-    -   [subscribeAddress][47]
-        -   [Parameters][48]
-    -   [unsubscribeAddress][49]
-        -   [Parameters][50]
--   [RegTestService][51]
-    -   [Parameters][52]
-    -   [generateBlock][53]
-        -   [Parameters][54]
--   [Client][55]
-    -   [Parameters][56]
-    -   [Examples][57]
-    -   [disconnect][58]
-    -   [send][59]
-        -   [Parameters][60]
-        -   [Examples][61]
-    -   [sendOnly][62]
-        -   [Parameters][63]
-        -   [Examples][64]
-    -   [addHandler][65]
-        -   [Parameters][66]
-        -   [Examples][67]
--   [Tags][68]
-    -   [End][69]
-    -   [ServiceId][70]
-    -   [MessageId][71]
-    -   [SequenceStart][72]
-    -   [LastInSequence][73]
-    -   [Ping][74]
-    -   [Pong][75]
-    -   [RequestId][76]
--   [Message][77]
-    -   [Parameters][78]
-    -   [Examples][79]
-    -   [header][80]
-    -   [body][81]
-    -   [toBuffer][82]
-    -   [fromBuffer][83]
-        -   [Parameters][84]
-
-## testing
-
-**Extends Client**
-
-Testing
+-   [Flowee][1]
+    -   [Parameters][2]
+    -   [Examples][3]
+    -   [hub][4]
+    -   [indexer][5]
+    -   [meta][6]
+    -   [monitor][7]
+    -   [blockchain][8]
+    -   [blockNotification][9]
+    -   [transaction][10]
+    -   [regTest][11]
+    -   [disconnect][12]
+-   [MetaService][13]
+    -   [Parameters][14]
+    -   [getVersion][15]
+    -   [getAvailableIndexers][16]
+-   [BlockchainService][17]
+    -   [Parameters][18]
+    -   [getBlockChainInfo][19]
+        -   [Examples][20]
+    -   [getBestBlockHash][21]
+        -   [Parameters][22]
+        -   [Examples][23]
+    -   [getBlockCount][24]
+        -   [Parameters][25]
+        -   [Examples][26]
+    -   [getBlock][27]
+        -   [Parameters][28]
+        -   [Examples][29]
+-   [BlockNotificationService][30]
+    -   [Parameters][31]
+    -   [subscribe][32]
+        -   [Parameters][33]
+    -   [unsubscribe][34]
+        -   [Parameters][35]
+-   [TransactionService][36]
+    -   [Parameters][37]
+    -   [getTransaction][38]
+        -   [Parameters][39]
+    -   [getAddress][40]
+        -   [Parameters][41]
+    -   [sendTransaction][42]
+        -   [Parameters][43]
+-   [MonitorService][44]
+    -   [Parameters][45]
+    -   [subscribeAddress][46]
+        -   [Parameters][47]
+    -   [unsubscribeAddress][48]
+        -   [Parameters][49]
+-   [RegTestService][50]
+    -   [Parameters][51]
+    -   [generateBlock][52]
+        -   [Parameters][53]
+-   [Client][54]
+    -   [Parameters][55]
+    -   [Examples][56]
+    -   [disconnect][57]
+    -   [send][58]
+        -   [Parameters][59]
+        -   [Examples][60]
+    -   [sendOnly][61]
+        -   [Parameters][62]
+        -   [Examples][63]
+    -   [addHandler][64]
+        -   [Parameters][65]
+        -   [Examples][66]
+-   [Tags][67]
+    -   [End][68]
+    -   [ServiceId][69]
+    -   [MessageId][70]
+    -   [SequenceStart][71]
+    -   [LastInSequence][72]
+    -   [Ping][73]
+    -   [Pong][74]
+    -   [RequestId][75]
+-   [Message][76]
+    -   [Parameters][77]
+    -   [Examples][78]
+    -   [header][79]
+    -   [body][80]
+    -   [toBuffer][81]
+    -   [fromBuffer][82]
+        -   [Parameters][83]
 
 ## Flowee
 
@@ -125,43 +118,43 @@ main();
 
 Instance of the Hub Client
 
-Returns **[Client][85]** Flowee Hub
+Returns **[Client][84]** Flowee Hub
 
 ### indexer
 
 Instance of the Indexer Client
 
-Returns **[Client][85]** Flowee Indexer
+Returns **[Client][84]** Flowee Indexer
 
 ### meta
 
 Meta Service
 
-Returns **[MetaService][86]** 
+Returns **[MetaService][85]** 
 
 ### monitor
 
 Address Monitor Service
 
-Returns **[MonitorService][87]** 
+Returns **[MonitorService][86]** 
 
 ### blockchain
 
 Blockchain Service
 
-Returns **[BlockchainService][88]** 
+Returns **[BlockchainService][87]** 
 
 ### blockNotification
 
 Block Notification Service
 
-Returns **[BlockNotificationService][89]** 
+Returns **[BlockNotificationService][88]** 
 
 ### transaction
 
 Transaction Service
 
-Returns **[TransactionService][90]** 
+Returns **[TransactionService][89]** 
 
 ### regTest
 
@@ -181,19 +174,19 @@ Meta Service that provides information about Flowee.
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### getVersion
 
 Get the version of Flowee the server is using
 
-Returns **[object][92]** String containing version
+Returns **[object][91]** String containing version
 
 ### getAvailableIndexers
 
 Get available Flowee indexers
 
-Returns **[object][92]** The indexers that are available
+Returns **[object][91]** The indexers that are available
 
 ## BlockchainService
 
@@ -203,7 +196,7 @@ Blockchain information service.
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### getBlockChainInfo
 
@@ -229,7 +222,7 @@ Get the best block hash available
 let bestBlockHash = await flowee.blockchain.getBestBlockHash();
 ```
 
-Returns **[Buffer][93]** The block hash
+Returns **[Buffer][92]** The block hash
 
 ### getBlockCount
 
@@ -245,7 +238,7 @@ Get Block height
 let blockCount = await flowee.blockchain.getBlockCount();
 ```
 
-Returns **[number][94]** The block height
+Returns **[number][93]** The block height
 
 ### getBlock
 
@@ -261,7 +254,7 @@ Get Block header
 let blockHeader = await flowee.blockchain.getBlockHeader(500000);
 ```
 
-Returns **[number][94]** Object containing details about block
+Returns **[number][93]** Object containing details about block
 
 ## BlockNotificationService
 
@@ -272,7 +265,7 @@ detected on the Blockchain.
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### subscribe
 
@@ -281,9 +274,9 @@ Subscribe to block notifications
 #### Parameters
 
 -   `callback`  
--   `Callback` **[function][95]** to execute when a block is found
+-   `Callback` **[function][94]** to execute when a block is found
 
-Returns **[number][94]** A Callback ID that can be used to unsubcribe
+Returns **[number][93]** A Callback ID that can be used to unsubcribe
 
 ### unsubscribe
 
@@ -292,7 +285,7 @@ Unsubscribe from block notifications
 #### Parameters
 
 -   `callbackId`  
--   `The` **[number][94]** Callback ID you wish to unsubscribe
+-   `The` **[number][93]** Callback ID you wish to unsubscribe
 
 ## TransactionService
 
@@ -302,7 +295,7 @@ Transaction lookup and sending service.
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### getTransaction
 
@@ -312,7 +305,7 @@ Get a transaction from the network
 
 -   `txId`  
 
-Returns **[object][92]** response from Flowee
+Returns **[object][91]** response from Flowee
 
 ### getAddress
 
@@ -322,7 +315,7 @@ Get an address from the network
 
 -   `address`  
 
-Returns **[object][92]** response from Flowee
+Returns **[object][91]** response from Flowee
 
 ### sendTransaction
 
@@ -330,9 +323,9 @@ Broadcast a transaction to the network
 
 #### Parameters
 
--   `transaction` **[Buffer][93]** data
+-   `transaction` **[Buffer][92]** data
 
-Returns **[object][92]** response from Flowee
+Returns **[object][91]** response from Flowee
 
 ## MonitorService
 
@@ -345,7 +338,7 @@ c) Double-spend notifications
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### subscribeAddress
 
@@ -356,10 +349,10 @@ c) Double-spend notifications
 
 #### Parameters
 
--   `address` **[Buffer][93]** Output script hashed with SHA256 (TODO support Base58, BCH Addresses)
--   `callback` **[function][95]** A callback function that will trigger when message found
+-   `address` **[Buffer][92]** Output script hashed with SHA256 (TODO support Base58, BCH Addresses)
+-   `callback` **[function][94]** A callback function that will trigger when message found
 
-Returns **[object][92]** Can be passed to the unsubscribeAddress function
+Returns **[object][91]** Can be passed to the unsubscribeAddress function
 
 ### unsubscribeAddress
 
@@ -367,7 +360,7 @@ Unsubscribe notifications from an address
 
 #### Parameters
 
--   `subscribedAddress` **[object][92]** The return value of subscribeAddress
+-   `subscribedAddress` **[object][91]** The return value of subscribeAddress
 
 ## RegTestService
 
@@ -377,7 +370,7 @@ Flowee's RegTest Service
 
 ### Parameters
 
--   `instance` **[Flowee][91]** Instance of Flowee
+-   `instance` **[Flowee][90]** Instance of Flowee
 
 ### generateBlock
 
@@ -386,9 +379,9 @@ Generates a block on RegTest Network
 #### Parameters
 
 -   `params`  
--   `Object` **[object][92]** containing "address" (Buffer) and "amount" (number)
+-   `Object` **[object][91]** containing "address" (Buffer) and "amount" (number)
 
-Returns **[Buffer][93]** The newly generated block's hash
+Returns **[Buffer][92]** The newly generated block's hash
 
 ## Client
 
@@ -397,7 +390,7 @@ A Flowee Client (can be either a Hub or an Indexer)
 ### Parameters
 
 -   `opts`  
--   `Options` **[object][92]** for the Client
+-   `Options` **[object][91]** for the Client
 
 ### Examples
 
@@ -428,9 +421,9 @@ This should be used with messages that expect a reply
 
 #### Parameters
 
--   `header` **[object][92]** An object containing the header (should be enums)
--   `body` **[object][92]** An object containing the body (should be enums)
--   `opts` **[object][92]** An object containing options for the request (optional, default `{}`)
+-   `header` **[object][91]** An object containing the header (should be enums)
+-   `body` **[object][91]** An object containing the body (should be enums)
+-   `opts` **[object][91]** An object containing options for the request (optional, default `{}`)
 
 #### Examples
 
@@ -441,7 +434,7 @@ let res = await flowee.send({ [Tags.ServiceId]: 4, [Tags.MessageId]: 0 }, {
 });
 ```
 
-Returns **[Promise][96]&lt;[Message][97]>** Resolves with the reply or rejects if error
+Returns **[Promise][95]&lt;[Message][96]>** Resolves with the reply or rejects if error
 
 ### sendOnly
 
@@ -450,9 +443,9 @@ This should be used with messages that DONT expect a reply
 
 #### Parameters
 
--   `header` **[object][92]** An object containing the header (should be enums)
--   `body` **[object][92]** An object containing the body (should be enums)
--   `opts` **[object][92]** An object containing options for the request (optional, default `{}`)
+-   `header` **[object][91]** An object containing the header (should be enums)
+-   `body` **[object][91]** An object containing the body (should be enums)
+-   `opts` **[object][91]** An object containing options for the request (optional, default `{}`)
 
 #### Examples
 
@@ -524,8 +517,8 @@ Flowee Message Packet
 
 ### Parameters
 
--   `header` **[object][92]** Header Object containing enumerated values (optional, default `{}`)
--   `body` **[object][92]** Body Object containing enumerated values (optional, default `{}`)
+-   `header` **[object][91]** Header Object containing enumerated values (optional, default `{}`)
+-   `body` **[object][91]** Body Object containing enumerated values (optional, default `{}`)
 
 ### Examples
 
@@ -550,7 +543,7 @@ Message Body Object
 
 Convert to a message to a buffer
 
-Returns **[Buffer][93]** Message as buffer
+Returns **[Buffer][92]** Message as buffer
 
 ### fromBuffer
 
@@ -560,198 +553,196 @@ Convert from buffer to message
 
 -   `buffer`  
 
-Returns **[Buffer][93]** Message
+Returns **[Buffer][92]** Message
 
-[1]: #testing
+[1]: #flowee
 
-[2]: #flowee
+[2]: #parameters
 
-[3]: #parameters
+[3]: #examples
 
-[4]: #examples
+[4]: #hub
 
-[5]: #hub
+[5]: #indexer
 
-[6]: #indexer
+[6]: #meta
 
-[7]: #meta
+[7]: #monitor
 
-[8]: #monitor
+[8]: #blockchain
 
-[9]: #blockchain
+[9]: #blocknotification
 
-[10]: #blocknotification
+[10]: #transaction
 
-[11]: #transaction
+[11]: #regtest
 
-[12]: #regtest
+[12]: #disconnect
 
-[13]: #disconnect
+[13]: #metaservice
 
-[14]: #metaservice
+[14]: #parameters-1
 
-[15]: #parameters-1
+[15]: #getversion
 
-[16]: #getversion
+[16]: #getavailableindexers
 
-[17]: #getavailableindexers
+[17]: #blockchainservice
 
-[18]: #blockchainservice
+[18]: #parameters-2
 
-[19]: #parameters-2
+[19]: #getblockchaininfo
 
-[20]: #getblockchaininfo
+[20]: #examples-1
 
-[21]: #examples-1
+[21]: #getbestblockhash
 
-[22]: #getbestblockhash
+[22]: #parameters-3
 
-[23]: #parameters-3
+[23]: #examples-2
 
-[24]: #examples-2
+[24]: #getblockcount
 
-[25]: #getblockcount
+[25]: #parameters-4
 
-[26]: #parameters-4
+[26]: #examples-3
 
-[27]: #examples-3
+[27]: #getblock
 
-[28]: #getblock
+[28]: #parameters-5
 
-[29]: #parameters-5
+[29]: #examples-4
 
-[30]: #examples-4
+[30]: #blocknotificationservice
 
-[31]: #blocknotificationservice
+[31]: #parameters-6
 
-[32]: #parameters-6
+[32]: #subscribe
 
-[33]: #subscribe
+[33]: #parameters-7
 
-[34]: #parameters-7
+[34]: #unsubscribe
 
-[35]: #unsubscribe
+[35]: #parameters-8
 
-[36]: #parameters-8
+[36]: #transactionservice
 
-[37]: #transactionservice
+[37]: #parameters-9
 
-[38]: #parameters-9
+[38]: #gettransaction
 
-[39]: #gettransaction
+[39]: #parameters-10
 
-[40]: #parameters-10
+[40]: #getaddress
 
-[41]: #getaddress
+[41]: #parameters-11
 
-[42]: #parameters-11
+[42]: #sendtransaction
 
-[43]: #sendtransaction
+[43]: #parameters-12
 
-[44]: #parameters-12
+[44]: #monitorservice
 
-[45]: #monitorservice
+[45]: #parameters-13
 
-[46]: #parameters-13
+[46]: #subscribeaddress
 
-[47]: #subscribeaddress
+[47]: #parameters-14
 
-[48]: #parameters-14
+[48]: #unsubscribeaddress
 
-[49]: #unsubscribeaddress
+[49]: #parameters-15
 
-[50]: #parameters-15
+[50]: #regtestservice
 
-[51]: #regtestservice
+[51]: #parameters-16
 
-[52]: #parameters-16
+[52]: #generateblock
 
-[53]: #generateblock
+[53]: #parameters-17
 
-[54]: #parameters-17
+[54]: #client
 
-[55]: #client
+[55]: #parameters-18
 
-[56]: #parameters-18
+[56]: #examples-5
 
-[57]: #examples-5
+[57]: #disconnect-1
 
-[58]: #disconnect-1
+[58]: #send
 
-[59]: #send
+[59]: #parameters-19
 
-[60]: #parameters-19
+[60]: #examples-6
 
-[61]: #examples-6
+[61]: #sendonly
 
-[62]: #sendonly
+[62]: #parameters-20
 
-[63]: #parameters-20
+[63]: #examples-7
 
-[64]: #examples-7
+[64]: #addhandler
 
-[65]: #addhandler
+[65]: #parameters-21
 
-[66]: #parameters-21
+[66]: #examples-8
 
-[67]: #examples-8
+[67]: #tags
 
-[68]: #tags
+[68]: #end
 
-[69]: #end
+[69]: #serviceid
 
-[70]: #serviceid
+[70]: #messageid
 
-[71]: #messageid
+[71]: #sequencestart
 
-[72]: #sequencestart
+[72]: #lastinsequence
 
-[73]: #lastinsequence
+[73]: #ping
 
-[74]: #ping
+[74]: #pong
 
-[75]: #pong
+[75]: #requestid
 
-[76]: #requestid
+[76]: #message
 
-[77]: #message
+[77]: #parameters-22
 
-[78]: #parameters-22
+[78]: #examples-9
 
-[79]: #examples-9
+[79]: #header
 
-[80]: #header
+[80]: #body
 
-[81]: #body
+[81]: #tobuffer
 
-[82]: #tobuffer
+[82]: #frombuffer
 
-[83]: #frombuffer
+[83]: #parameters-23
 
-[84]: #parameters-23
+[84]: #client
 
-[85]: #client
+[85]: #metaservice
 
-[86]: #metaservice
+[86]: #monitorservice
 
-[87]: #monitorservice
+[87]: #blockchainservice
 
-[88]: #blockchainservice
+[88]: #blocknotificationservice
 
-[89]: #blocknotificationservice
+[89]: #transactionservice
 
-[90]: #transactionservice
+[90]: #flowee
 
-[91]: #flowee
+[91]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[92]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+[92]: https://nodejs.org/api/buffer.html
 
-[93]: https://nodejs.org/api/buffer.html
+[93]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[94]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[94]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
-[95]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[95]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[96]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
-
-[97]: #message
+[96]: #message

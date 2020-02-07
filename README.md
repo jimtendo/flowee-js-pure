@@ -13,3 +13,4 @@
 2. Handle auto-reconnect
    The difficulty with this is that we have Address and Block Notification services.
    If we get disconnected, how can we cleanly reconnect and restore these "states"?
+3. Use @memberof for documentation pattern of extending libcash-js functions.
