@@ -1,19 +1,16 @@
 const Flowee = require('../');
 const _ = require('lodash');
 const CMF = require('compact-message-format');
+const Message = require('../lib/message');
 
-async function main() {
-  // Testnet 
-  //let flowee = new Flowee('api.flowee.org:11235');
-  
-  let cmf = new CMF.MessageParser(Buffer.from("00087e34040600087e3404", "hex"));
-  console.log(cmf.next());
-  console.log(cmf.next());
-  console.log(cmf.next());
-  
+async function main() {  
   // Livenet
   let flowee = new Flowee();
+  flowee.meta.getVersion();
   
+  //let blockHeader = await flowee.blockchain.getBlockHeader(500000);
+  //console.log(blockHeader);
+  /*
   // Get the version of Flowee we are connected to
   let version = await flowee.meta.getVersion();
   console.log('//')
@@ -78,10 +75,18 @@ async function main() {
   console.log(indexersRes);
   
   // Get transaction
-  let transactionRes = await flowee.transaction.getTransaction("00dd0f923e850948119c448fbad31f457b3d0e82e0f82aa86a963eb99f365ce5");
+  /*
+  let transactionRes = await flowee.transaction.getTransaction(Buffer.from("83ff2b04fe5e19f2650c5fedc706a26ab314e9edc40aed106373adaa36f6bf12", 'hex'));
   console.log(transactionRes);
+  */
+  
+  //let transactionRes = await flowee.transaction.getTransaction(Buffer.from("d9d5082034bc89879140fa8f3e0af7226d8580e56b8b4df63efc57515e56f352", 'hex'));
+  //console.log(transactionRes);
+  
+  // Get transaction
+  let addressRes = await flowee.transaction.getAddress("001388FCC627F797B8FEC524A7377007E7AC9EB5369637AC78");
+  console.log(addressRes);
 }
 
 main();
-
 

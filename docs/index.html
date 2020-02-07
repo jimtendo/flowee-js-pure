@@ -26,6 +26,16 @@
               
                 
                 <li><a
+                  href='#testing'
+                  class="">
+                  testing
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#flowee'
                   class=" toggle-sibling">
                   Flowee
@@ -86,6 +96,12 @@
                         #regTest
                       </a></li>
                       
+                      <li><a
+                        href='#floweedisconnect'
+                        class='regular pre-open'>
+                        #disconnect
+                      </a></li>
+                      
                     </ul>
                   
                   
@@ -109,9 +125,9 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
-                        href='#metaserviceversion'
+                        href='#metaservicegetversion'
                         class='regular pre-open'>
-                        #version
+                        #getVersion
                       </a></li>
                       
                       <li><a
@@ -158,6 +174,12 @@
                         href='#blockchainservicegetblockcount'
                         class='regular pre-open'>
                         #getBlockCount
+                      </a></li>
+                      
+                      <li><a
+                        href='#blockchainservicegetblock'
+                        class='regular pre-open'>
+                        #getBlock
                       </a></li>
                       
                     </ul>
@@ -220,6 +242,12 @@
                         href='#transactionservicegettransaction'
                         class='regular pre-open'>
                         #getTransaction
+                      </a></li>
+                      
+                      <li><a
+                        href='#transactionservicegetaddress'
+                        class='regular pre-open'>
+                        #getAddress
                       </a></li>
                       
                       <li><a
@@ -311,6 +339,12 @@
                   
                     <ul class='list-reset py1-ul pl1'>
                       <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#clientdisconnect'
+                        class='regular pre-open'>
+                        #disconnect
+                      </a></li>
                       
                       <li><a
                         href='#clientsend'
@@ -434,15 +468,15 @@
                       <li class='h5'><span>Instance members</span></li>
                       
                       <li><a
-                        href='#messagesetheader'
+                        href='#messageheader'
                         class='regular pre-open'>
-                        #setHeader
+                        #header
                       </a></li>
                       
                       <li><a
-                        href='#messagegetheader'
+                        href='#messagebody'
                         class='regular pre-open'>
-                        #getHeader
+                        #body
                       </a></li>
                       
                       <li><a
@@ -467,6 +501,61 @@
         </div>
       </div>
       <div id='split-right' class='relative overflow-auto height-viewport-100'>
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='testing'>
+      testing
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Testing</p>
+
+    <div class='pre p1 fill-light mt0'>testing</div>
+  
+  
+    <p>
+      Extends
+      
+        <a href="#client">Client</a>
+      
+    </p>
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
         
           
           <section class='p2 mb2 clearfix bg-white minishadow'>
@@ -985,6 +1074,53 @@ main();</pre>
       </div>
     </div>
   
+    <div class='border-bottom' id='floweedisconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>disconnect()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Disconnect from hub and indexer</p>
+
+    <div class='pre p1 fill-light mt0'>disconnect()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
   
@@ -1060,11 +1196,11 @@ main();</pre>
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
-    <div class='border-bottom' id='metaserviceversion'>
+    <div class='border-bottom' id='metaservicegetversion'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>version()</span>
+            <span class='code strong strong truncate'>getVersion()</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -1074,7 +1210,7 @@ main();</pre>
 
   <p>Get the version of Flowee the server is using</p>
 
-    <div class='pre p1 fill-light mt0'>version(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+    <div class='pre p1 fill-light mt0'>getVersion(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
   
   
 
@@ -1446,6 +1582,81 @@ main();</pre>
       </div>
     </div>
   
+    <div class='border-bottom' id='blockchainservicegetblock'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getBlock(param)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Get Block header</p>
+
+    <div class='pre p1 fill-light mt0'>getBlock(param: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>param</span> <code class='quiet'>(any)</code>
+	    (Number or Hash) The block height
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></code>:
+        Object containing details about block
+
+      
+    
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">let</span> blockHeader = <span class="hljs-keyword">await</span> flowee.blockchain.getBlockHeader(<span class="hljs-number">500000</span>);</pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
 </div>
 
   
@@ -1775,6 +1986,74 @@ detected on the Blockchain.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>txId</span> <code class='quiet'>(any)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></code>:
+        response from Flowee
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+    <div class='border-bottom' id='transactionservicegetaddress'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>getAddress(address)</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Get an address from the network</p>
+
+    <div class='pre p1 fill-light mt0'>getAddress(address: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>address</span> <code class='quiet'>(any)</code>
 	    
           </div>
           
@@ -2345,6 +2624,53 @@ c) Double-spend notifications</p>
   
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
+  
+    <div class='border-bottom' id='clientdisconnect'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>disconnect()</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  <p>Disconnect this client</p>
+
+    <div class='pre p1 fill-light mt0'>disconnect()</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
   
     <div class='border-bottom' id='clientsend'>
       <div class="clearfix small pointer toggle-sibling">
@@ -3089,7 +3415,7 @@ Values 0 through 10 are reserved by Flowee.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>header</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
-            = <code>null</code>)</code>
+            = <code>{}</code>)</code>
 	    Header Object containing enumerated values
 
           </div>
@@ -3099,7 +3425,7 @@ Values 0 through 10 are reserved by Flowee.</p>
         <div class='space-bottom0'>
           <div>
             <span class='code bold'>body</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>
-            = <code>null</code>)</code>
+            = <code>{}</code>)</code>
 	    Body Object containing enumerated values
 
           </div>
@@ -3208,11 +3534,11 @@ Values 0 through 10 are reserved by Flowee.</p>
     <div class='py1 quiet mt1 prose-big'>Instance Members</div>
     <div class="clearfix">
   
-    <div class='border-bottom' id='messagesetheader'>
+    <div class='border-bottom' id='messageheader'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>setHeader(tag, value)</span>
+            <span class='code strong strong truncate'>header</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -3220,42 +3546,19 @@ Values 0 through 10 are reserved by Flowee.</p>
 
   
 
-  <p>Set a header</p>
+  <p>Message Header Object)</p>
 
-    <div class='pre p1 fill-light mt0'>setHeader(tag: any, value: any)</div>
-  
-  
-
-  
-  
-  
-  
+    <div class='pre p1 fill-light mt0'>header</div>
   
   
 
   
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>tag</span> <code class='quiet'>(any)</code>
-	    The tag to set (enum value)
+  
+  
+  
+  
+  
 
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>value</span> <code class='quiet'>(any)</code>
-	    The value to assign
-
-          </div>
-          
-        </div>
-      
-    </div>
   
 
   
@@ -3278,11 +3581,11 @@ Values 0 through 10 are reserved by Flowee.</p>
       </div>
     </div>
   
-    <div class='border-bottom' id='messagegetheader'>
+    <div class='border-bottom' id='messagebody'>
       <div class="clearfix small pointer toggle-sibling">
         <div class="py1 contain">
             <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>getHeader(tag)</span>
+            <span class='code strong strong truncate'>body</span>
         </div>
       </div>
       <div class="clearfix display-none toggle-target">
@@ -3290,45 +3593,23 @@ Values 0 through 10 are reserved by Flowee.</p>
 
   
 
-  <p>Get a header</p>
+  <p>Message Body Object</p>
 
-    <div class='pre p1 fill-light mt0'>getHeader(tag: any): any</div>
-  
-  
-
-  
-  
-  
-  
+    <div class='pre p1 fill-light mt0'>body</div>
   
   
 
   
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>tag</span> <code class='quiet'>(any)</code>
-	    The tag to use (enum value)
-
-          </div>
-          
-        </div>
-      
-    </div>
+  
+  
+  
+  
   
 
   
 
   
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code>any</code>:
-        The value of the tag
 
-      
-    
   
 
   

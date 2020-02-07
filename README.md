@@ -8,7 +8,8 @@
    Possible solution is keep a "streaming buffer" that should always have the size
    of the message as first. When streamingBuffer > sizeOfMessage, then we send to
    CMF.
+   DONE (I think).
+   However, still need to work out how to handle SequenceStart-type messages.
 2. Handle auto-reconnect
    The difficulty with this is that we have Address and Block Notification services.
    If we get disconnected, how can we cleanly reconnect and restore these "states"?
-3. Ask Zander if Indexer is working. Getting weird responses from it.

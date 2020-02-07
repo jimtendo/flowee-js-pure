@@ -13,6 +13,11 @@
 - Let's try to avoid Getters/Setters where possible. If there's no transformations or validity checks occurring we can just modify the public variable directly.
 - If you add a new function, please create a test for it under tests/unit. 
  
+## Common "gotchas"
+
+1. Bitcoin stores the BlockHashes and TxID's in reverse.
+   This means, when sending a Blockchain Hash or TxID to Flowee, you should call `buffer.reverse()` on that field.
+ 
 ## Useful References
 
 Flowee makes use of Enums for Message Headers and Parameters. These can be found in the Flowee source-code at the following URL:
