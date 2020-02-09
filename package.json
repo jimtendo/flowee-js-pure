@@ -1,11 +1,11 @@
 {
   "name": "flowee-js-pure",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A pure NodeJS Library for FloweeJS",
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "docs": "documentation build index.js -f html -o ./docs && documentation build index.js -f md -o ./API.md"
+    "docs": "node gen-docs.js"
   },
   "keywords": [],
   "author": "",

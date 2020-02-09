@@ -78,6 +78,19 @@ describe('# Flowee.Monitor', async function() {
       assert.equal(unsubscriptionMessageCount, 2);
     });
   });
+  
+  let blockSubscription = null;
+  describe('# subscribeNewBlocks', async () => {
+    it('Should not throw error ', async () => {
+      blockSubscription = await flowee.Monitor.subscribeNewBlocks((msg) => {});
+    });
+  });
+  
+  describe('# unsubscribeNewBlocks', async () => {
+    it('Should not throw error ', async () => {
+      await flowee.Monitor.unsubscribeNewBlocks(blockSubscription);
+    });
+  });
 });
 
 after(() => {

@@ -1,16 +1,33 @@
 # Flowee JS Pure
 
-## Todo List
+Flowee-JS-Pure is a NodeJS Library that leverages the Flowee API's. It does not require compiling any C++ sources, and thus is considered a Pure NodeJS implementation.
 
-1. onData can give 2 messages at once in the callback (it's streaming).
-   Will need to find a way to process this correctly so that it won't fuck with my
-   CMF parsing.
-   Possible solution is keep a "streaming buffer" that should always have the size
-   of the message as first. When streamingBuffer > sizeOfMessage, then we send to
-   CMF.
-   DONE (I think).
-   However, still need to work out how to handle SequenceStart-type messages.
-2. Handle auto-reconnect
-   The difficulty with this is that we have Address and Block Notification services.
-   If we get disconnected, how can we cleanly reconnect and restore these "states"?
-3. Use @memberof for documentation pattern of extending libcash-js functions.
+The following code demonstrates its use:
+
+```
+const Flowee = require('flowee-pure-js');
+
+async function main() {
+  let flowee = new Flowee();
+  
+  let version = await flowee.Meta.getVersion();
+  console.log(`Connect to Flowee Version: ${version}`);
+  
+  let tx = await flowee.Transaction.getTransaction("ac6a5235b9263a6f0f9ff2e81cdd6474df11115d7bba70881ac0fc1fa2e4ac2b");
+  console.log(tx);
+}
+
+main()
+```
+
+## Flowee Service
+
+Note that Flowee's API's require a persistent Socket Connection. Therefore, for implementation, it is recommended that your application runs Flowee-JS-Pure as a "service" (as you would MongoDB or any other service. For example, you could create a "services/flowee.js" file and export the instance like so:
+
+```
+const Flowee = require('flowee-pure-js');
+
+const flowee = new Flowee();
+
+module.exports = flowee;
+```
